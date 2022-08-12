@@ -2,60 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveToCheckpoint : MonoBehaviour
+public class MoveToTarget : MonoBehaviour
 {
-    private bool initialized = false;
-
-    private CharacterController controller;
-    private Vector3 playerVelocity;
-    [SerializeField] private float speed = 1.0f;
-    [SerializeField] private float turnSpeed = 300f;
-    [SerializeField] private float offsetAngleToAlignWithCamera = 225;
-
-    public GameObject checkPointPathsParent;
-    private CheckPointPaths checkPointController;
-    private List<Transform> targets;
-    private Transform target;
-    private int targetIndex = -1;
+    [Header("Target")]
+    public Transform target;
+    public List<Transform> targets;
+    public int targetIndex = 0;
     [SerializeField] private float targetReachedBoundary = 2f;
 
-    private Vector3 debugMove;
-    private Vector3 debugTurnGap;
+    [Header("Movement sttings")]
+    private CharacterController controller;
+    public float speed;
+    [SerializeField] private float turnSpeed = 300f;    
+    public float stopInBetweenDistance;
 
-    public void Initialize()
+    private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
-        controller.radius = Random.Range(0.3f, 0.9f);
-
-        checkPointController = checkPointPathsParent.GetComponent<CheckPointPaths>();
-        targets = checkPointController.GetRandomPath();
-        SelectNextTarget();
-
-        transform.position = target.position;
-        transform.rotation = target.rotation;
-        transform.Rotate(new Vector3(0,90,0));
-
-        Invoke(nameof(SetInitialized), 0.5f);
-    }
-
-    private void SetInitialized()
-    {
-        initialized = true;
     }
 
     void Update()
     {
-        if (!initialized)
-        {
-            return;
-        }
-
         // Determine which direction to rotate towards
         Vector3 targetDirection = target.position - transform.position + new Vector3(Random.Range(-1f, -1f), 0, Random.Range(1f,-1f)) * 1.7f;
         
         if (targetDirection.magnitude < targetReachedBoundary)
         {
             DoOnTargetReached();
+            return;
+        }
+
+        if (ObstructionByObstacle())
+        {
             return;
         }
 
@@ -74,6 +52,20 @@ public class MoveToCheckpoint : MonoBehaviour
         controller.Move(transform.forward * Time.deltaTime * speed);
     }
 
+    private bool ObstructionByObstacle()
+    {
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+        if (Physics.Raycast(transform.position, fwd, stopInBetweenDistance))
+        {
+            print("There is something in front of the object!");
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.yellow);
+            return true;
+        }
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.white);
+        return false;
+    }
+
     private void DoOnTargetReached()
     {
         if(targetIndex >= targets.Count - 1)
@@ -89,8 +81,6 @@ public class MoveToCheckpoint : MonoBehaviour
     {
         targetIndex++;
         target = targets[targetIndex];
-
-
     }
 
 }

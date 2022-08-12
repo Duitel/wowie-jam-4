@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7816770389594536322
+--- !u!1 &4122387215762728641
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7816770389594536333}
-  - component: {fileID: 7816770389594536334}
-  - component: {fileID: 7816770389594536335}
-  - component: {fileID: 4921379903723030357}
-  - component: {fileID: 7816770389594536321}
-  - component: {fileID: 4956750237073276308}
+  - component: {fileID: 5805084996125938166}
+  - component: {fileID: 676142523430017993}
+  - component: {fileID: 4666951566330509494}
+  - component: {fileID: 1103113809486288217}
+  - component: {fileID: 3123803070630700802}
+  - component: {fileID: 7092826171064184347}
+  - component: {fileID: 6895064310579954486}
   m_Layer: 0
-  m_Name: Car
+  m_Name: Pedestrian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7816770389594536333
+--- !u!4 &5805084996125938166
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816770389594536322}
+  m_GameObject: {fileID: 4122387215762728641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.61204094, y: 0, z: -0.8186716}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7816770389594536334
+--- !u!33 &676142523430017993
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816770389594536322}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7816770389594536335
+  m_GameObject: {fileID: 4122387215762728641}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4666951566330509494
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816770389594536322}
+  m_GameObject: {fileID: 4122387215762728641}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,31 +87,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!143 &4921379903723030357
+--- !u!136 &1103113809486288217
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4122387215762728641}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &3123803070630700802
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816770389594536322}
+  m_GameObject: {fileID: 4122387215762728641}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.5
+  m_Height: 2
+  m_Radius: 1.13
   m_SlopeLimit: 0
   m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7816770389594536321
+--- !u!114 &7092826171064184347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816770389594536322}
+  m_GameObject: {fileID: 4122387215762728641}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03480ce47e4f38847b5f8f4659b4cf17, type: 3}
@@ -120,22 +135,22 @@ MonoBehaviour:
   targets: []
   targetIndex: -1
   targetReachedBoundary: 2
-  speed: 8
-  turnSpeed: 1
+  speed: 0
+  turnSpeed: 300
   stopInBetweenDistance: 0
---- !u!114 &4956750237073276308
+--- !u!114 &6895064310579954486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816770389594536322}
+  m_GameObject: {fileID: 4122387215762728641}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f6851ce72a51e14b822d7c111d38192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   checkPointPathsParent: {fileID: 0}
-  maxSpeed: 8
-  minSpeed: 5
-  stopInBetweenDistance: 0
+  maxSpeed: 2
+  minSpeed: 3
+  stopInBetweenDistance: 0.01

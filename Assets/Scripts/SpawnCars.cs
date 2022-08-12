@@ -9,8 +9,8 @@ class SpawnCars : SpawnObject
 
     protected override void DoAfterSpawn(GameObject spawnedObject)
     {
-        MoveToCheckpoint moveToCheckpoint = spawnedObject.GetComponent<MoveToCheckpoint>();
-        moveToCheckpoint.checkPointPathsParent = checkPointsParent;
-        moveToCheckpoint.Initialize();
+        SetupTrafficParticipant setupCar= spawnedObject.GetComponent<SetupTrafficParticipant>();
+        setupCar.checkPointPathsParent = checkPointsParent;
+        setupCar.Setup();
     }
 }

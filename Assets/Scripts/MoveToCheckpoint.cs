@@ -19,6 +19,9 @@ public class MoveToCheckpoint : MonoBehaviour
     private int targetIndex = -1;
     [SerializeField] private float targetReachedBoundary = 2f;
 
+    private Vector3 debugMove;
+    private Vector3 debugTurnGap;
+
     public void Initialize()
     {
         controller = gameObject.AddComponent<CharacterController>();
@@ -26,7 +29,10 @@ public class MoveToCheckpoint : MonoBehaviour
         checkPointController = checkPointPathsParent.GetComponent<CheckPointPaths>();
         targets = checkPointController.GetRandomPath();
         SelectNextTarget();
+
         transform.position = target.position;
+        transform.rotation = target.rotation;
+        transform.Rotate(new Vector3(0,90,0));
 
         Invoke(nameof(SetInitialized), 0.5f);
     }
@@ -43,31 +49,30 @@ public class MoveToCheckpoint : MonoBehaviour
             return;
         }
 
-        Vector3 move = transform.position - target.position;
+        Vector3 move = target.position - transform.position;
         if (move.magnitude < targetReachedBoundary)
         {
+            Debug.Log("Within reach: Magnitude " + move.magnitude);
             DoOnTargetReached();
             return;
         }
-        move = Quaternion.Euler(0, offsetAngleToAlignWithCamera, 0) * move;
-        move.y = 0;
 
-        controller.Move(move * Time.deltaTime * speed);
+        // Determine which direction to rotate towards
+        Vector3 targetDirection = target.position - transform.position;
 
-        if (move != Vector3.zero)
-        {
-            Vector3 turnGap = (move - gameObject.transform.forward);
-            Vector3 turnBy = turnGap.normalized * turnSpeed * Time.deltaTime;
-            if (turnGap.magnitude < turnBy.magnitude)
-            {
-                turnBy = turnGap;
-            }
+        // The step size is equal to speed times frame time.
+        float singleStep = turnSpeed * Time.deltaTime;
 
-            gameObject.transform.forward += turnBy;
-        }
+        // Rotate the forward vector towards the target direction by one step
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
 
-        playerVelocity.y = 0;
-        controller.Move(playerVelocity * Time.deltaTime);
+        // Draw a ray pointing at our target in
+        Debug.DrawRay(transform.position, newDirection, Color.red);
+
+        // Calculate a rotation a step closer to the target and applies rotation to this object
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
+        controller.Move(transform.forward * Time.deltaTime * speed);
     }
 
     private void DoOnTargetReached()
@@ -86,4 +91,5 @@ public class MoveToCheckpoint : MonoBehaviour
         targetIndex++;
         target = targets[targetIndex];
     }
+
 }

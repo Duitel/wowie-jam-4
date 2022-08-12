@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03480ce47e4f38847b5f8f4659b4cf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  turnSpeed: 300
-  offsetAngleToAlignWithCamera: 225
+  speed: 8
+  turnSpeed: 1
+  offsetAngleToAlignWithCamera: 45
   checkPointPathsParent: {fileID: 0}
   targetReachedBoundary: 2

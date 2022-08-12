@@ -1,12 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class AIMovement : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
-    [SerializeField] private float playerSpeed = 2.0f;
+    [SerializeField] private float playerSpeed = 1.0f;
     [SerializeField] private float turnSpeed = 300f;
     [SerializeField] private float offsetAngleToAlignWithCamera = 225;
+    [SerializeField] private Transform target;
+    [SerializeField] private float targetReachedBoundary = 2f;
 
     private void Start()
     {
@@ -15,10 +19,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 move = transform.position - target.position;
+        if (move.magnitude < targetReachedBoundary)
+        {
+            return;
+        }
         move = Quaternion.Euler(0, offsetAngleToAlignWithCamera, 0) * move;
-
         move.y = 0;
+
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         if (move != Vector3.zero)

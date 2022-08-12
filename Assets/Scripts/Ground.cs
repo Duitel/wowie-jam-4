@@ -8,6 +8,9 @@ public class Ground : MonoBehaviour
     [SerializeField] private Material _highlightMaterial;
     [SerializeField] private Material _selectedMaterial;
 
+    private Transform _thisTransform;
+    private Vector3 _position;
+
     public enum State { NORMAL, HIGHLIGHT, SELECTED };
 
     private Renderer _renderer;
@@ -17,6 +20,8 @@ public class Ground : MonoBehaviour
     {
         _renderer = GetComponent<Renderer>();
         SwitchState(State.NORMAL, Random.Range(0f, 1f));
+        _thisTransform = this.GetComponent<Transform>();
+        _position = _thisTransform.position;
     }
 
 
@@ -36,13 +41,17 @@ public class Ground : MonoBehaviour
         switch (newState)
         {
             case State.NORMAL:
-                _renderer.sharedMaterial = _normalMaterial; 
+                _renderer.sharedMaterial = _normalMaterial;
+                _thisTransform.position = _position;
                 break;
             case State.HIGHLIGHT:
                 _renderer.sharedMaterial = _highlightMaterial;
+                _thisTransform.position = _position + Vector3.up * 0.05f;
                 break;
             case State.SELECTED:
                 _renderer.sharedMaterial = _selectedMaterial;
+                
+                _thisTransform.position = _position + Vector3.up * 0.2f;
                 break;
         }
     }

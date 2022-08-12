@@ -24,7 +24,8 @@ public class MoveToCheckpoint : MonoBehaviour
 
     public void Initialize()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
+        controller.radius = Random.Range(0.3f, 0.9f);
 
         checkPointController = checkPointPathsParent.GetComponent<CheckPointPaths>();
         targets = checkPointController.GetRandomPath();
@@ -49,16 +50,14 @@ public class MoveToCheckpoint : MonoBehaviour
             return;
         }
 
-        Vector3 move = target.position - transform.position;
-        if (move.magnitude < targetReachedBoundary)
+        // Determine which direction to rotate towards
+        Vector3 targetDirection = target.position - transform.position + new Vector3(Random.Range(-1f, -1f), 0, Random.Range(1f,-1f)) * 1.7f;
+        
+        if (targetDirection.magnitude < targetReachedBoundary)
         {
-            Debug.Log("Within reach: Magnitude " + move.magnitude);
             DoOnTargetReached();
             return;
         }
-
-        // Determine which direction to rotate towards
-        Vector3 targetDirection = target.position - transform.position;
 
         // The step size is equal to speed times frame time.
         float singleStep = turnSpeed * Time.deltaTime;
@@ -90,6 +89,8 @@ public class MoveToCheckpoint : MonoBehaviour
     {
         targetIndex++;
         target = targets[targetIndex];
+
+
     }
 
 }

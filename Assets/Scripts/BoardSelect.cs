@@ -4,16 +4,37 @@ using UnityEngine;
 
 public class BoardSelect : MonoBehaviour
 {
-    [SerializeField] private GameObject _groundGameObject;
-    [SerializeField] private int height = 12;
-    [SerializeField] private int width = 16;
+    [SerializeField] private GameObject[] _groundGameObject;
+    private int height; // tp the right
+    private int width; // to the left
+
+    private int[,] _floorplan =
+    {
+        {0,0,1,3,1,4,4,1,0,0 },
+        {0,0,1,3,1,4,4,1,0,0 },
+        {0,0,1,3,1,4,4,1,0,0 },
+        {0,0,1,3,1,4,4,1,0,0 },
+        {1,1,1,3,1,4,4,1,1,1 },
+        {2,2,2,5,2,7,7,2,2,2 },
+        {1,1,1,3,1,4,4,1,1,1 },
+        {0,0,1,3,1,4,4,1,0,0 },
+        {0,0,1,3,1,4,4,1,0,0 },
+        {1,1,1,3,1,4,4,1,1,1 },
+        {4,4,4,6,4,4,4,4,4,4 },
+        {4,4,4,6,4,4,4,4,4,4 },
+        {1,1,1,3,1,4,4,1,1,1 },
+        {0,0,1,3,1,4,4,1,0,0 },
+        {0,0,1,3,1,4,4,1,0,0 },
+        {0,0,1,3,1,4,4,1,0,0 },
+        {0,0,1,3,1,4,4,1,0,0 },
+    };
 
 
     private GameObject[,] _floorGameObject;
     private Ground[,] _floorGround;
 
-    private int _xSelect = 8;
-    private int _ySelect = 5;
+    private int _xSelect = 1;
+    private int _ySelect = 1;
     private int _xPreviousSelect = 0;
     private int _yPreviousSelect = 0;
 
@@ -23,7 +44,7 @@ public class BoardSelect : MonoBehaviour
     private float _movingTime;
     private float _movingDelay = 0.2f;
 
-    private enum State { };
+private enum State { };
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +77,8 @@ public class BoardSelect : MonoBehaviour
 
     void FillFloor()
     {
+        width = _floorplan.GetLength(0);
+        height = _floorplan.GetLength(1);
         _floorGameObject = new GameObject[width, height];
         _floorGround = new Ground[width, height];
         //Instantiate(_groundGameObject, new Vector3(0, 0, 0), Quaternion.identity);
@@ -63,7 +86,7 @@ public class BoardSelect : MonoBehaviour
         {
             for (int x = 0; x < width; ++x)
             {
-                _floorGameObject[x, y] = (GameObject)Instantiate(_groundGameObject, new Vector3(x, 0, y), Quaternion.identity);
+                _floorGameObject[x, y] = (GameObject)Instantiate(_groundGameObject[_floorplan[x,y]], new Vector3(x, 0, y), Quaternion.identity);
                 _floorGround[x, y] = _floorGameObject[x,y].GetComponent<Ground>();
             }
         }

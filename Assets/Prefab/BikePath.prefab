@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1960261232559291218}
   - component: {fileID: 4674948033277542072}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: BikePath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1960261232559291219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d2c7f3dec3e436648a5542f08ff96455, type: 2}
+  - {fileID: 2100000, guid: e8a918e6c3c81634fad936a45af76b79, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,6 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9232554413fac41bbbb9da9332bf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalMaterial: {fileID: 2100000, guid: 45cb7a052f9597a40b0cce737efbcb71, type: 2}
-  _highlightMaterial: {fileID: 2100000, guid: d2c7f3dec3e436648a5542f08ff96455, type: 2}
-  _selectedMaterial: {fileID: 2100000, guid: 1844739ef0a75ed4da4b6e543753811f, type: 2}
+  _normalMaterial: {fileID: 2100000, guid: e8a918e6c3c81634fad936a45af76b79, type: 2}
+  _highlightMaterial: {fileID: 2100000, guid: 4483514f2e30b2844bc2285b900cc017, type: 2}
+  _selectedMaterial: {fileID: 2100000, guid: 108ca04ae19b785478814ebe50fecbde, type: 2}

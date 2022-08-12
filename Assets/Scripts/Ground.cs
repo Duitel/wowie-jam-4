@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Ground : MonoBehaviour
@@ -10,6 +11,7 @@ public class Ground : MonoBehaviour
 
     private Transform _thisTransform;
     private Vector3 _position;
+    private float _startHeight = 5f;
 
     public enum State { NORMAL, HIGHLIGHT, SELECTED };
 
@@ -19,11 +21,34 @@ public class Ground : MonoBehaviour
     void Start()
     {
         _renderer = GetComponent<Renderer>();
-        SwitchState(State.NORMAL, Random.Range(0f, 1f));
         _thisTransform = this.GetComponent<Transform>();
+        _thisTransform.position = new Vector3(_thisTransform.position.x, -0.5f, _thisTransform.position.z);
         _position = _thisTransform.position;
+        SwitchPosition(_position, Random.Range(0.05f, 0.5f) + 0.01f * _position.z * _position.x);
+        
+
     }
 
+    private void SwitchPosition(Vector3 _targetPosition, float _duration = 0)
+    {
+        StartCoroutine(SwitchMoving(_targetPosition, _duration));
+    }
+
+    IEnumerator SwitchMoving(Vector3 _targetPosition, float _duration)
+    {
+        Vector3 _currentPosisition = _thisTransform.position;
+        Vector3 _startPosition = _currentPosisition + Vector3.up * _startHeight;
+        _thisTransform.position = _startPosition;
+        float _timeElapsed = 0;
+        while (_timeElapsed < _duration)
+        {
+            transform.position = Vector3.Lerp(_startPosition, _targetPosition, _timeElapsed / _duration);
+            _timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        _thisTransform.position = _targetPosition;
+        SwitchState(State.NORMAL, 0.5f);
+    }
 
     public void SwitchState(State newState, float delay = 0)
     {

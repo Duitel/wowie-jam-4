@@ -10,7 +10,7 @@ public class MoveToTarget : MonoBehaviour
     public int targetIndex = 0;
     [SerializeField] private float targetReachedBoundary = 2f;
 
-    [Header("Movement sttings")]
+    [Header("Movement settings")]
     private CharacterController controller;
     public float speed;
     [SerializeField] private float turnSpeed = 300f;    

@@ -101,6 +101,7 @@ private enum State { };
             for (int x = 0; x < width; ++x)
             {
                 _floorGameObject[x, y] = (GameObject)Instantiate(_groundGameObject[_floorplan[x,y]], new Vector3(x, 0, y), Quaternion.identity);
+                _floorGameObject[x, y].transform.SetParent(transform);
                 _floorGround[x, y] = _floorGameObject[x,y].GetComponent<Ground>();
             }
         }

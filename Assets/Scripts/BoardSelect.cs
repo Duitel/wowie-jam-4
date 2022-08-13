@@ -8,6 +8,15 @@ public class BoardSelect : MonoBehaviour
     private int height; // tp the right
     private int width; // to the left
 
+    // Level design
+    // 0 = earth tile
+    // 1 = grass tile
+    // 2 = sidewalk tile
+    // 3 = bikepath tile
+    // 4 = road tile
+    // 5 = crossing of bikepath and sidewalk
+    // 6 = crossing of bikepath and road
+    // 7 = crossing of road and sidewalk
     private int[,] _floorplan =
     {
         {0,0,1,3,1,4,4,1,0,0 },
@@ -29,15 +38,17 @@ public class BoardSelect : MonoBehaviour
         {0,0,1,3,1,4,4,1,0,0 },
     };
 
-
+    // Arrays for the floor
     private GameObject[,] _floorGameObject;
     private Ground[,] _floorGround;
 
+    // Selected tile position
     private int _xSelect = 1;
     private int _ySelect = 1;
     private int _xPreviousSelect = 0;
     private int _yPreviousSelect = 0;
 
+    // Used for the animation of the block tiles
     private float _elapsedTime;
     private float _timeStep = 0.02f;
     private bool _isMoving = false;
@@ -46,13 +57,15 @@ public class BoardSelect : MonoBehaviour
 
 private enum State { };
 
-    // Start is called before the first frame update
+    // Start the creation of the floor
     void Start()
     {
         FillFloor();
     }
 
-    // Update is called once per frame
+    // FixedUpdate is called 100 times per second
+    // Badly writen routine to control the speed of the selector 
+    // make the first moments of movement 3 times as slow
     void FixedUpdate()
     {
         _elapsedTime+= Time.deltaTime;
@@ -75,6 +88,7 @@ private enum State { };
         }
     }
 
+    // create the different block tiles and create an array for it
     void FillFloor()
     {
         width = _floorplan.GetLength(0);
@@ -92,6 +106,7 @@ private enum State { };
         }
     }
 
+    // Moving the selector on the ground, assigned to the WASD keys
     bool UserInput()
     {
         if (Input.GetKey("s") & _ySelect > 0)
@@ -133,6 +148,7 @@ private enum State { };
         return false;
     }
 
+    // Select a column and calling a function of each block in the column
     void SelectColumn()
     {
         for(int y = 0; y < height; y++)
@@ -148,6 +164,7 @@ private enum State { };
         }
     }
 
+    // Unselect a column and calling a function of each block in the column
     void UnSelectColumn()
     {
         for (int y = 0; y < height; y++)
@@ -164,6 +181,7 @@ private enum State { };
         }
     }
 
+    // Select a row and calling a function of each block in the row
     void SelectRow()
     {
         for (int x = 0; x <  width; x++)
@@ -180,6 +198,7 @@ private enum State { };
         }
     }
 
+    // Unselect a row and calling a function of each block in the row
     void UnSelectRow()
     {
         for (int x = 0; x < width; x++)

@@ -36,7 +36,7 @@ public class Ground : MonoBehaviour
         StartCoroutine(SwitchMoving(_targetPosition, _duration));
     }
 
-    // 
+    // Linearly move the block from current position to target position using the time defined by _duration
     IEnumerator SwitchMoving(Vector3 _targetPosition, float _duration)
     {
         Vector3 _currentPosisition = transform.position;
@@ -53,17 +53,20 @@ public class Ground : MonoBehaviour
         SwitchState(State.NORMAL, 0.5f);
     }
 
+    // Change the state of the block tile by calling a seperate thread for possible use of a delay
     public void SwitchState(State newState, float delay = 0)
     {
         StartCoroutine(SwitchDelay(newState, delay));
     }
 
+    // Changing the state of the block tile after a delay
     IEnumerator SwitchDelay(State newState, float delay)
     {
         yield return new WaitForSeconds(delay);
         BeginState(newState);
     }
 
+    // Change the block tile according to the state of the block tile
     private void BeginState(State newState)
     {
         switch (newState)

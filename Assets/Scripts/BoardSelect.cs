@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoardSelect : MonoBehaviour
 {
     [SerializeField] private GameObject[] _groundGameObject;
-    private int height; // tp the right
+    private int height; // to the right
     private int width; // to the left
 
     // Level design

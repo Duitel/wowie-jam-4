@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnObject : MonoBehaviour
 {
-    [SerializeField] private GameObject objectToSpawn;
+    [SerializeField] private List<GameObject> objectToSpawn;
     [SerializeField] private float startTime;
     [SerializeField] private float timeBetween;
 
@@ -15,7 +15,8 @@ public class SpawnObject : MonoBehaviour
 
     void Spawn()
     {
-        GameObject spawnedObject = Instantiate(objectToSpawn);
+        int randomObjectIndex = Random.Range(0, objectToSpawn.Count);
+        GameObject spawnedObject = Instantiate(objectToSpawn[randomObjectIndex]);
         spawnedObject.transform.SetParent(transform);
 
         DoAfterSpawn(spawnedObject);

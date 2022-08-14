@@ -16,9 +16,12 @@ public class MoveToTarget : MonoBehaviour
     [SerializeField] private float turnSpeed = 300f;    
     public float stopInBetweenDistance;
 
+    private Animator animator;
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -34,8 +37,11 @@ public class MoveToTarget : MonoBehaviour
 
         if (ObstructionByObstacle())
         {
+            if(animator) animator.SetFloat("speed", 0);
             return;
         }
+
+        if (animator) animator.SetFloat("speed", speed);
 
         // The step size is equal to speed times frame time.
         float singleStep = turnSpeed * Time.deltaTime;

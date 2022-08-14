@@ -18,8 +18,16 @@ public class Slagboom : MonoBehaviour
     {
         if(collider.tag == "Player")
         {
-            animator.SetTrigger("CloseSlagboom");
-            OpenSlagboom();
+            if (_timeToClose == 0f)
+            {
+                animator.SetTrigger("CloseSlagboom");
+                OpenSlagboom();
+            }
+            else
+            {
+                _timeToClose = 0;
+            }
+            
         }
     }
 
@@ -30,12 +38,12 @@ public class Slagboom : MonoBehaviour
 
     IEnumerator OpenSlagboomAfterDelay()
     {
-        _timeToClose = 0;
         while (_timeToClose < _closingDelay)
         {
             _timeToClose += Time.deltaTime;
             yield return null;
         }
         animator.SetTrigger("OpenSlagboom");
+        _timeToClose = 0;
     }
 }

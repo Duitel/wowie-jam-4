@@ -58,11 +58,11 @@ public class MoveToTarget : MonoBehaviour
 
         if (Physics.Raycast(transform.position, fwd, stopInBetweenDistance))
         {
-            print("There is something in front of the object!");
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.yellow);
+            // print("There is something in front of the object!");
+            // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.yellow);
             return true;
         }
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.white);
+        // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.white);
         return false;
     }
 

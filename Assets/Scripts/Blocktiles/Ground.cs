@@ -12,7 +12,8 @@ public class Ground : MonoBehaviour
 
     // used for vertical movemnt of the block tile
     private Vector3 _position;
-    private float _startHeight = 5f;
+    // Height from which the blocks fall at the loading of the level
+    private float _startHeight = 20f;
 
     // the different states for the block tile
     public enum State { NORMAL, HIGHLIGHT, SELECTED };
@@ -27,7 +28,7 @@ public class Ground : MonoBehaviour
         _renderer = GetComponent<Renderer>();
         transform.position = new Vector3(transform.position.x, -0.5f, transform.position.z);
         _position = transform.position;
-        SwitchPosition(_position, Random.Range(0.05f, 0.5f) + 0.01f * _position.z * _position.x);
+        SwitchPosition(_position, Random.Range(0.05f, 0.5f) + 0.001f * _position.z * _position.x);
     }
 
     // start seperate thread for the movement of the block tile

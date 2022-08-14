@@ -24,7 +24,7 @@ public class MoveToTarget : MonoBehaviour
     void Update()
     {
         // Determine which direction to rotate towards
-        Vector3 targetDirection = target.position - transform.position + new Vector3(Random.Range(-1f, -1f), 0, Random.Range(1f,-1f)) * 1.7f;
+        Vector3 targetDirection = target.position - transform.position + new Vector3(Random.Range(-1f, -1f), 0, Random.Range(1f,-1f)) * 0.05f;
         
         if (targetDirection.magnitude < targetReachedBoundary)
         {

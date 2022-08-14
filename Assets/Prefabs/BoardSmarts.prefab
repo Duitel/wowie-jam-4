@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundGameObject:
+  - {fileID: 1875053788688894385, guid: 008299cfc405cc9479cf052e78bc276a, type: 3}
   - {fileID: 1960261232559291219, guid: 8b3df411bfa62b049bb5c2d6e89602c7, type: 3}
   - {fileID: 1960261232559291219, guid: 5772c4f023d03c8439b5738066727b24, type: 3}
   - {fileID: 1960261232559291219, guid: 71f5384fc7425234dae23985db816730, type: 3}

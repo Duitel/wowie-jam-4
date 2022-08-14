@@ -113,7 +113,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 1.13
+  m_Radius: 0.58
   m_SlopeLimit: 0
   m_StepOffset: 0
   m_SkinWidth: 0.08
@@ -134,7 +134,7 @@ MonoBehaviour:
   target: {fileID: 0}
   targets: []
   targetIndex: -1
-  targetReachedBoundary: 2
+  targetReachedBoundary: 0.2
   speed: 0
   turnSpeed: 300
   stopInBetweenDistance: 0

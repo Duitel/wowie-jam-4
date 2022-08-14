@@ -98,7 +98,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1
-  m_Radius: 0.5
+  m_Radius: 0.66
   m_SlopeLimit: 0
   m_StepOffset: 0
   m_SkinWidth: 0.08
@@ -119,10 +119,10 @@ MonoBehaviour:
   target: {fileID: 0}
   targets: []
   targetIndex: -1
-  targetReachedBoundary: 2
+  targetReachedBoundary: 0.8
   speed: 8
-  turnSpeed: 1
-  stopInBetweenDistance: 0
+  turnSpeed: 2
+  stopInBetweenDistance: 2
 --- !u!114 &4956750237073276308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,4 +138,4 @@ MonoBehaviour:
   checkPointPathsParent: {fileID: 0}
   maxSpeed: 8
   minSpeed: 5
-  stopInBetweenDistance: 0
+  stopInBetweenDistance: 2

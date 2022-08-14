@@ -12,6 +12,7 @@ public class Ground : MonoBehaviour
 
     // used for vertical movemnt of the block tile
     private Vector3 _position;
+    // Height from which the blocks fall at the loading of the level
     private float _startHeight = 20f;
 
     // the different states for the block tile

@@ -15,6 +15,12 @@ ModelImporter:
   - first:
       74: 1023992570608409904
     second: rig|Walk
+  - first:
+      74: 4281023341992437779
+    second: rig|GeitSegwayStop
+  - first:
+      74: -6031718353633978563
+    second: rig|GeitsegwayGo
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -28,8 +34,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'Head' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -75,18 +80,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|0TPose.001
-      takeName: rig|0TPose.001
+      name: rig|GeitSegwayStop
+      takeName: rig|GeitSegwayStop
       internalID: 0
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -138,6 +143,35 @@ ModelImporter:
       internalID: 0
       firstFrame: 0
       lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig|GeitsegwayGo
+      takeName: rig|GeitsegwayGo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 51
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -27,7 +27,7 @@ public class MoveToTarget : MonoBehaviour
     void Update()
     {
         // Determine which direction to rotate towards
-        Vector3 targetDirection = target.position - transform.position + new Vector3(Random.Range(-1f, -1f), 0, Random.Range(1f,-1f)) * 1.7f;
+        Vector3 targetDirection = target.position - transform.position + new Vector3(Random.Range(-1f, -1f), 0, Random.Range(1f,-1f)) * 0.05f;
         
         if (targetDirection.magnitude < targetReachedBoundary)
         {
@@ -75,11 +75,11 @@ public class MoveToTarget : MonoBehaviour
 
         if (Physics.Raycast(transform.position, fwd, stopInBetweenDistance))
         {
-            print("There is something in front of the object!");
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.yellow);
+            // print("There is something in front of the object!");
+            // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.yellow);
             return true;
         }
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.white);
+        // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * stopInBetweenDistance, Color.white);
         return false;
     }
 

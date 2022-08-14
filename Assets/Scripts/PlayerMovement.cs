@@ -8,9 +8,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float turnSpeed = 300f;
     [SerializeField] private float offsetAngleToAlignWithCamera = 225;
 
+    private Animator animator;
+
     private void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -21,11 +24,13 @@ public class PlayerMovement : MonoBehaviour
         move.y = 0;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
+        animator.SetFloat("speed", move.magnitude);
+
         if (move != Vector3.zero)
         {
             Vector3 turnGap = (move - gameObject.transform.forward);
             Vector3 turnBy = turnGap.normalized * turnSpeed * Time.deltaTime;
-            if(turnGap.magnitude < turnBy.magnitude)
+            if (turnGap.magnitude < turnBy.magnitude)
             {
                 turnBy = turnGap;
             }
